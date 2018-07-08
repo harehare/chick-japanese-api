@@ -1,0 +1,9 @@
+{
+    "name": "chick-japanese-api",
+    "description": "Japanese morphological analysis API for Chick",
+    "repository": "https://github.com/harehare/chick-japanese-api",
+    "addons": [
+        "heroku-redis:hobby-dev",
+        "heroku-postgres:hobby-dev"
+    ]
+}

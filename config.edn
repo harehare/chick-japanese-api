@@ -1,0 +1,7 @@
+{:chick/migrate-config {}
+ :chick/migrate {:config #ig/ref :chick/migrate-config}
+ :chick/port {}
+ :adapter/jetty {:port #ig/ref :chick/port :async? true :handler #ig/ref :handler/app}
+ :handler/app {}
+ :chick/job-channel {}
+ :chick/calc-tf-idf-job {:ch #ig/ref :chick/job-channel}}
