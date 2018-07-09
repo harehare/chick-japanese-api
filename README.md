@@ -2,6 +2,8 @@
 
 A chick extension api for japanese.
 
+[![CircleCI](https://circleci.com/gh/harehare/chick-japanese-api/tree/master.svg?style=svg)](https://circleci.com/gh/harehare/chick-japanese-api/tree/master)
+
 ## Usage
 
 ### Run in development
