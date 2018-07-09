@@ -13,7 +13,7 @@
   (context "/api/scoring" []
     :tags ["api/scoring"]
     (GET "/" req
-      :query-params [tokens urls]
+      :query-params [urls tokens]
       (try
         (let [token-items (str/split tokens #",")
               url-items (str/split urls #",")]

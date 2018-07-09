@@ -18,7 +18,7 @@
 
 (defonce insert-queue (a/chan 100))
 
-(defonce cpu-num (+ 1 (.availableProcessors (Runtime/getRuntime))))
+(defonce cpu-num (inc (.availableProcessors (Runtime/getRuntime))))
 
 (defn exponential-backoff [wait-time rate max-time f]
   (if (<= wait-time max-time)

@@ -18,7 +18,7 @@
             (map (fn [^String s] (str/replace s #"[ ・〜ー一①-⑨【】、。!#$%&\"'()*+-\.,/:;<=>?@\[\]^_`{|}~]" "")))
             (map (fn [^String s] (str/trim s)))
             (filter (fn [^String s] (> (.length s) 2))))]
-    (sequence xf (seq (.tokenize ^Tokenizer tokenizer (str/replace text #"\n" " "))))))
+    (sequence xf (.tokenize ^Tokenizer tokenizer (str/replace text #"\n" " ")))))
 
 (defn bigram-tokenize
   [^String text result]
@@ -30,7 +30,7 @@
   (let [xf (comp
             (filter (fn [s] (not (.matches (re-matcher #"^\d+$|.* .*|.*[ 〜ー一①-⑨【】、。!\"#$%&'()*+-\.,/:;<=>?@\[\]^_`{|}~].*" s)))))
             (map (fn [s] (str/lower-case s)))
-            (filter (fn [^String s] (not (empty? s))))
+            (filter (fn [^String s] seq))
             (filter (fn [^String s] (not (contains? @stopwords s))))
             (distinct))]
     (sequence xf tokens)))
