@@ -34,7 +34,7 @@
                  [clj-http "3.9.0"]
                  [jarohen/chime "0.2.2"]]
   :profiles {:uberjar {:main chick.core :aot :all}
-             :precomp {:aot :all}
+             :precomp {:source-paths ["src/java"] :aot :all}
              :dev {:dependencies [[integrant/repl "0.2.0"]
                                   [org.clojure/tools.nrepl "0.2.12"]
                                   [cljfmt "0.5.7"]]

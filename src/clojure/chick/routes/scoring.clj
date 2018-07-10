@@ -7,19 +7,17 @@
             [chick.middleware.header :refer [header-mw]]
             [chick.middleware.ratelimit :refer [ratelimit-mw]]
             [chick.middleware.logging :refer [logging-mw]]
-            [compojure.api.sweet :refer [context routes GET]]))
+            [compojure.api.sweet :refer [context routes POST]]))
 
 (def scoring-routes
   (context "/api/scoring" []
     :tags ["api/scoring"]
-    (GET "/" req
-      :query-params [urls tokens]
+    (POST "/" req
+      :body-params [urls tokens]
       (try
-        (let [token-items (str/split tokens #",")
-              url-items (str/split urls #",")]
-          (v/required token-items)
-          (->
-           (logging-mw #(response token-items url-items) req)
-           header-mw
-           (ratelimit-mw req)))
+        (v/required tokens)
+        (->
+         (logging-mw #(response tokens urls) req)
+         header-mw
+         (ratelimit-mw req))
         (catch InvalidParameterError e (bad-request {:status_code 400 :message "invalid parameter." :type :validation}))))))
