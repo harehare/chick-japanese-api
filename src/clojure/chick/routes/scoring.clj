@@ -4,7 +4,7 @@
             [clojure.string :as str]
             [chick.validate :as v]
             [ring.util.http-response :refer [bad-request]]
-            [chick.middleware.cors :refer [cors-mw]]
+            [chick.middleware.header :refer [header-mw]]
             [chick.middleware.ratelimit :refer [ratelimit-mw]]
             [chick.middleware.logging :refer [logging-mw]]
             [compojure.api.sweet :refer [context routes GET]]))
@@ -20,6 +20,6 @@
           (v/required token-items)
           (->
            (logging-mw #(response token-items url-items) req)
-           cors-mw
+           header-mw
            (ratelimit-mw req)))
         (catch InvalidParameterError e (bad-request {:status_code 400 :message "invalid parameter." :type :validation}))))))

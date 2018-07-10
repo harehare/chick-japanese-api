@@ -2,7 +2,7 @@
   (:require [chick.services.scraping :refer [response]]
             [chick.validate :as v]
             [clojure.string :as str]
-            [chick.middleware.cors :refer [cors-mw]]
+            [chick.middleware.header :refer [header-mw]]
             [chick.middleware.ratelimit :refer [ratelimit-mw]]
             [ring.util.http-response :refer [bad-request]]
             [chick.middleware.logging :refer [logging-mw]]
@@ -16,5 +16,5 @@
       (let [url-items (str/split urls #",")]
         (->
          (logging-mw #(response url-items) req)
-         cors-mw
+         header-mw
          (ratelimit-mw req))))))
