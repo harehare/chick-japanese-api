@@ -21,9 +21,12 @@
     (sequence xf (.tokenize ^Tokenizer tokenizer (str/replace text #"\n" " ")))))
 
 (defn bigram-tokenize
-  [^String text result]
-  (if (< (count text) 2) result
-      (bigram-tokenize (subs text 1) (cons (subs text 0 2) result))))
+  [^String text]
+  (loop [text text
+         result []]
+    (if (< (count text) 2)
+      result
+      (recur (subs text 1) (cons (subs text 0 2) result)))))
 
 (defn char-filter
   [tokens]
@@ -41,4 +44,4 @@
 
 (defn analyze-ngram
   [^String text]
-  (char-filter (bigram-tokenize text [])))
+  (char-filter (bigram-tokenize text)))

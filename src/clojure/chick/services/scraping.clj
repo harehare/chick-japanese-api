@@ -47,7 +47,7 @@
  (map (fn [m] (let [{:keys [url html]} m
                     text (strip-html-tags html)
                     tokens (analyze text)
-                    all-tokens (concat tokens (analyze-ngram (subs text 0 (min 500 (count text)))))
+                    all-tokens (concat tokens (analyze-ngram text))
                     snippet (subs text 0 (min 200 (count text)))]
                 (log/debug (str "tokens " (count tokens)))
                 (a/go (a/>! insert-queue {:tokens tokens :url url}))

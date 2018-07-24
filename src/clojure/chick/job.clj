@@ -24,4 +24,3 @@
         (sql/calc-tf-idf tx))
       (log/info "TF-IDF updated.")
       (recur))))
-
