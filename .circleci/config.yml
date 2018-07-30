@@ -16,6 +16,7 @@ jobs:
           paths:
             - ~/.m2
           key: chick-{{ checksum "project.clj" }}
+      - run: lein uberjar
       - run: lein kibit
-      - run: lein javac src/java
+      - run: lein eastwood
       - run: lein test

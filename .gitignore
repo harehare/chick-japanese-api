@@ -10,6 +10,7 @@ pom.xml.asc
 .hgignore
 .hg/
 .vscode
+.history
 
 db/*  
 !.gitkeep
